@@ -21,7 +21,8 @@ export default defineConfig({
     ['allure-playwright']
   ],
   use: {
-    baseURL: env.baseUrl,
+    baseURL: 'https://demo.playwright.dev/todomvc',
+    launchOptions:{slowMo: 1000,},
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure'
