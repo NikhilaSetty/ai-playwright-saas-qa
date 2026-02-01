@@ -36,21 +36,36 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - name: Start backend
+      - name: Start backend (diagnostic)
         run: |
+          echo "===== REPO ROOT ====="
+          ls
+
+          echo "===== BACKEND DIR ====="
+          ls backend || exit 1
+
+          echo "===== BACKEND PACKAGE.JSON ====="
+          cat backend/package.json || exit 1
+
           cd backend || exit 1
-          npm ci
+
+          npm ci || exit 1
+
+          echo "===== STARTING SERVER ====="
           nohup npm run start > backend.log 2>&1 &
-          sleep 6
-          echo "==== BACKEND LOG ===="
+
+          sleep 8
+
+          echo "===== BACKEND LOG ====="
           cat backend.log || true
 
-      - name: Verify backend port
+      - name: Check port
         run: |
           ss -ltnp | grep 4000 || true
 
       - name: Wait for API
-        run: npx wait-on http://127.0.0.1:4000 --timeout 30000
+        run: npx wait-on http://127.0.0.1:4000 --timeout 20000
+
 
 
       - name: Run Smoke Tests
