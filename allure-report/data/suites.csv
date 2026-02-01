@@ -1,0 +1,8 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","3662","get started link","","2026-02-01","passed","2026-02-01","","example.spec.ts","",""
+"","165","@smoke Login API returns token","","2026-02-01","passed","2026-02-01","Auth API","auth.api.spec.ts","",""
+"","25","@regression Get users","","2026-02-01","passed","2026-02-01","Users API","users.api.spec.ts","",""
+"","2597","has title","","2026-02-01","passed","2026-02-01","","example.spec.ts","",""
+"","5855","@smoke Add task","","2026-02-01","passed","2026-02-01","Tasks UI flows","tasks.spec.ts","",""
+"","22","@regression Create user","","2026-02-01","passed","2026-02-01","Users API","users.api.spec.ts","",""
+"","6084","@regression Add multiple tasks","","2026-02-01","passed","2026-02-01","Tasks UI flows","tasks.spec.ts","",""

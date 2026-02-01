@@ -1,0 +1,2 @@
+STATUS: 200
+BODY: {"token":"fake-jwt-token-123"}
