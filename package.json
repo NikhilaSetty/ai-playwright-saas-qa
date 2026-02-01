@@ -24,7 +24,8 @@
     "pixelmatch": "^7.1.0",
     "pngjs": "^7.0.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "wait-on": "^9.0.3"
   },
   "dependencies": {
     "ajv": "^8.17.1",
@@ -34,5 +35,16 @@
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NikhilaSetty/ai-playwright-saas-qa.git"
+  },
+  "bugs": {
+    "url": "https://github.com/NikhilaSetty/ai-playwright-saas-qa/issues"
+  },
+  "homepage": "https://github.com/NikhilaSetty/ai-playwright-saas-qa#readme"
 }
