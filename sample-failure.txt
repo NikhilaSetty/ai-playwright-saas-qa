@@ -1,0 +1,4 @@
+Error: expect(locator).toBeVisible()
+
+Locator: text=THIS WILL FAIL
+Timeout 5000ms exceeded.
