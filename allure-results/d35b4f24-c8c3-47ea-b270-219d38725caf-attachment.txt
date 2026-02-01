@@ -1,2 +1,0 @@
-STATUS: 200
-BODY: [{"id":1,"name":"nikhila"},{"id":2,"name":"qa"}]

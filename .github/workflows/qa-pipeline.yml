@@ -68,12 +68,12 @@ jobs:
       # ---- Start Backend if API tests exist ----
       - name: Start backend
         run: |
-          cd server || exit 0
+          cd server
           npm ci
           npm run start &
       
       - name: Wait for API
-        run: npx wait-on http://localhost:4000 || true
+        run: npx wait-on http://localhost:4000
 
       - name: Run Regression Tests
         run: npx playwright test -g "@regression"
