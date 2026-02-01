@@ -88,22 +88,22 @@ jobs:
           npm run allure:generate || true
 
       - name: Run AI Failure Analyzer
-            if: failure()
-            run: |
+        if: failure()
+        run: |
               echo "Running AI analyzer..."
               npm run ai:analyze test-results || true
-            env:
+        env:
               AI_API_KEY: ${{ secrets.AI_API_KEY }}
 
-      -     name: Upload Artifacts
-            if: always()
-            uses: actions/upload-artifact@v4
-            with:
+      - name: Upload Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
               name: regression-artifacts
               path: |
                 playwright-report/
                 allure-report/
                 ai-summary.json
 
-            name: Check backend process
-            run : ps aux | grep node
+      - name: Check backend process
+        run : ps aux | grep node
