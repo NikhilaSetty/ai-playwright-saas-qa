@@ -38,18 +38,20 @@ jobs:
 
       - name: Start backend
         run: |
-          cd backend
+          cd backend || exit 1
           npm ci
-          npm run start &
+          nohup npm run start > backend.log 2>&1 &
+          sleep 6
+          echo "==== BACKEND LOG ===="
+          cat backend.log || true
 
-      - name: Debug backend startup
+      - name: Verify backend port
         run: |
-          sleep 5
-          ps aux | grep node || true
-          netstat -tulpn | grep 4000 || true
+          ss -ltnp | grep 4000 || true
 
       - name: Wait for API
         run: npx wait-on http://127.0.0.1:4000 --timeout 30000
+
 
       - name: Run Smoke Tests
         run: npx playwright test -g "@smoke"
@@ -87,18 +89,20 @@ jobs:
 
       - name: Start backend
         run: |
-          cd backend
+          cd backend || exit 1
           npm ci
-          npm run start &
+          nohup npm run start > backend.log 2>&1 &
+          sleep 6
+          echo "==== BACKEND LOG ===="
+          cat backend.log || true
 
-      - name: Debug backend startup
+      - name: Verify backend port
         run: |
-          sleep 5
-          ps aux | grep node || true
-          netstat -tulpn | grep 4000 || true
+          ss -ltnp | grep 4000 || true
 
       - name: Wait for API
         run: npx wait-on http://127.0.0.1:4000 --timeout 30000
+
 
       - name: Run Regression Tests
         run: npx playwright test -g "@regression"
