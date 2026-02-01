@@ -51,6 +51,10 @@ jobs:
     needs: smoke-tests
     runs-on: ubuntu-latest
 
+    env:
+      BASE_URL: ${{ secrets.BASE_URL }}
+      API_URL: ${{ secrets.API_URL }}
+
     steps:
       - uses: actions/checkout@v4
 
@@ -73,7 +77,7 @@ jobs:
           npm run start &
       
       - name: Wait for API
-        run: npx wait-on http://localhost:4000
+        run: npx wait-on http://127.0.0.1:4000
 
       - name: Run Regression Tests
         run: npx playwright test -g "@regression"
@@ -100,3 +104,6 @@ jobs:
             playwright-report/
             allure-report/
             ai-summary.json
+
+        name: Check backenf process
+        run : ps aux | grep node
