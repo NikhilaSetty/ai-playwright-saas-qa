@@ -36,6 +36,15 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
+      - name: Start backend
+        run: |
+          cd backend
+          npm ci
+          npm run start &
+
+      - name: Wait for API
+        run: npx wait-on http://127.0.0.1:4000
+
       - name: Run Smoke Tests
         run: npx playwright test -g "@smoke"
 
@@ -60,50 +69,3 @@ jobs:
 
       - name: Setup Node
         uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
-
-      # ---- Start Backend if API tests exist ----
-      - name: Start backend
-        run: |
-          cd server
-          npm ci
-          npm run start &
-      
-      - name: Wait for API
-        run: npx wait-on http://127.0.0.1:4000
-
-      - name: Run Regression Tests
-        run: npx playwright test -g "@regression"
-
-      - name: Generate Allure Report
-        if: always()
-        run: |
-          npm run allure:generate || true
-
-      - name: Run AI Failure Analyzer
-        if: failure()
-        run: |
-              echo "Running AI analyzer..."
-              npm run ai:analyze test-results || true
-        env:
-              AI_API_KEY: ${{ secrets.AI_API_KEY }}
-
-      - name: Upload Artifacts
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-              name: regression-artifacts
-              path: |
-                playwright-report/
-                allure-report/
-                ai-summary.json
-
-      - name: Check backend process
-        run : ps aux | grep node
