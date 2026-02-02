@@ -1,4 +1,5 @@
 import usersRouter from "./routes/users.js";
+import express from "express";
 
 app.use("/users", usersRouter);
 
