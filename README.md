@@ -61,3 +61,5 @@ Allure Report
 Playwright Trace Viewer
 ![Capture 1](https://github.com/user-attachments/assets/3d5f0bf7-fce0-494e-9a06-d235ed74d0c3)
 
+CI Pipeline Setup
+![Capture 2](https://github.com/user-attachments/assets/bbf32dcd-9c63-490a-b34d-3f23e257172d)
