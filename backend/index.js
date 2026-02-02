@@ -1,15 +1,14 @@
-import usersRouter from "./routes/users.js";
 import express from "express";
-
-app.use("/users", usersRouter);
-
-
-const express = require("express");
-const cors = require("cors");
+import cors from "cors";
+import usersRouter from "./routes/users.js";
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
+
+// ---- Routes ----
+app.use("/users", usersRouter);
 
 app.post("/auth/login", (req, res) => {
   const { email, password } = req.body;
@@ -25,6 +24,7 @@ app.post("/auth/login", (req, res) => {
   });
 });
 
+// ---- Server ----
 const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, "0.0.0.0", () => {
