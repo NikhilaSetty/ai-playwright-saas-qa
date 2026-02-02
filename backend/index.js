@@ -1,3 +1,8 @@
+import usersRouter from "./routes/users.js";
+
+app.use("/users", usersRouter);
+
+
 const express = require("express");
 const cors = require("cors");
 
